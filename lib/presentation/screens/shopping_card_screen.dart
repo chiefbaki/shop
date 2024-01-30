@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/core/consts/app_colors.dart';
 import 'package:shop/core/consts/app_fonts.dart';
+import 'package:shop/data/model/model.dart';
 import 'package:shop/presentation/widgets/back_btn.dart';
 import 'package:shop/provider/shopping_card_provider.dart';
-import 'package:shop/resources/resources.dart';
 
 class ShoppingCardScreen extends StatefulWidget {
   const ShoppingCardScreen({super.key});
@@ -13,10 +13,13 @@ class ShoppingCardScreen extends StatefulWidget {
   State<ShoppingCardScreen> createState() => _ShoppingCardScreenState();
 }
 
+bool isSelected = false;
+
 class _ShoppingCardScreenState extends State<ShoppingCardScreen> {
   @override
   Widget build(BuildContext context) {
     final vm = Provider.of<ShoppingCardProvider>(context);
+    final ShoppingCardList items = ShoppingCardList();
     return Scaffold(
       appBar: AppBar(
         leading: BackBtn(
@@ -74,39 +77,26 @@ class _ShoppingCardScreenState extends State<ShoppingCardScreen> {
             const SizedBox(
               height: 22,
             ),
-            SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height * 0.63,
-                child: Column(
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.63,
+              child: ListView.separated(
+                physics: const AlwaysScrollableScrollPhysics(),
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                itemCount: items.models.length,
+                itemBuilder: (context, index) => Column(
                   children: [
-                    Row(
-                      children: [
-                        Checkbox(
-                            side: const BorderSide(color: Color(0xFFF0F2F1)),
-                            activeColor: AppColors.activeBtnColor,
-                            value: true,
-                            onChanged: (value) {}),
-                        const SizedBox(
-                          width: 9,
-                        ),
-                        const ProductCard(),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Checkbox(
-                            side: const BorderSide(color: Color(0xFFF0F2F1)),
-                            activeColor: AppColors.activeBtnColor,
-                            value: true,
-                            onChanged: (value) {}),
-                        const SizedBox(
-                          width: 9,
-                        ),
-                        const ProductCard(),
-                      ],
+                    ProductCard(
+                      img: items.models[index].img,
+                      model: items.models[index].model,
+                      price: items.models[index].price,
+                      quantity: items.models[index].quantity,
+                      variant: items.models[index].variant,
                     ),
                   ],
+                ),
+                separatorBuilder: (context, index) => const SizedBox(
+                  height: 24,
                 ),
               ),
             ),
@@ -140,14 +130,12 @@ class _ShoppingCardScreenState extends State<ShoppingCardScreen> {
                   height: 32,
                 ),
                 ElevatedButton(
-                    onPressed: () {},
+                    onPressed: null,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.activeBtnColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4),
-                        
-                      )
-                    ),
+                        backgroundColor: AppColors.activeBtnColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                        )),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 16, horizontal: 100),
@@ -166,17 +154,44 @@ class _ShoppingCardScreenState extends State<ShoppingCardScreen> {
   }
 }
 
-class ProductCard extends StatelessWidget {
+class ProductCard extends StatefulWidget {
   const ProductCard({
     super.key,
+    required this.img,
+    required this.variant,
+    required this.model,
+    required this.price,
+    required this.quantity,
   });
 
+  final String img;
+  final String variant;
+  final String model;
+  final double price;
+  final int quantity;
+
+  @override
+  State<ProductCard> createState() => _ProductCardState();
+}
+
+class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
+        Checkbox(
+            side: const BorderSide(color: Color(0xFFF0F2F1)),
+            activeColor: AppColors.activeBtnColor,
+            value: isSelected,
+            onChanged: (value) {
+              isSelected = !isSelected;
+              setState(() {});
+            }),
+        const SizedBox(
+          width: 9,
+        ),
         Image.asset(
-          Images.rectangle25,
+          widget.img,
           width: 82,
           height: 72,
         ),
@@ -187,13 +202,13 @@ class ProductCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Air pods max by Apple",
+              widget.model,
               style: AppFonts.s14w500.copyWith(color: AppColors.regularColor),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: Text(
-                "Variant: Grey",
+                "Variant: ${widget.variant}",
                 style: AppFonts.s12w400.copyWith(color: AppColors.lightGrey),
               ),
             ),
@@ -202,7 +217,7 @@ class ProductCard extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    "\$ 199,99",
+                    "\$ ${widget.price.toString()}",
                     style: AppFonts.s14w500
                         .copyWith(color: AppColors.regularColor),
                   ),
@@ -218,7 +233,7 @@ class ProductCard extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: Text(
-                          "1",
+                          "${widget.quantity.toString()}",
                           style: AppFonts.s14w400
                               .copyWith(color: AppColors.regularColor),
                         ),
