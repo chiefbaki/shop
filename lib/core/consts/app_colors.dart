@@ -6,4 +6,5 @@ abstract class AppColors {
   static const Color regularColor = Color(0xFF393F42);
   static const Color disabledBtnColor = Color(0xFFD9D9D9);
   static const Color activeBtnColor = Color(0xFF67C4A7);
+  static const Color lengthColor = Color(0xFFD65B5B);
 }

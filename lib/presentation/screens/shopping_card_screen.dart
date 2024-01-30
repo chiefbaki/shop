@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shop/core/consts/app_colors.dart';
 import 'package:shop/core/consts/app_fonts.dart';
 import 'package:shop/presentation/widgets/back_btn.dart';
+import 'package:shop/provider/shopping_card_provider.dart';
+import 'package:shop/resources/resources.dart';
 
 class ShoppingCardScreen extends StatefulWidget {
   const ShoppingCardScreen({super.key});
@@ -13,6 +16,7 @@ class ShoppingCardScreen extends StatefulWidget {
 class _ShoppingCardScreenState extends State<ShoppingCardScreen> {
   @override
   Widget build(BuildContext context) {
+    final vm = Provider.of<ShoppingCardProvider>(context);
     return Scaffold(
       appBar: AppBar(
         leading: BackBtn(
@@ -24,11 +28,92 @@ class _ShoppingCardScreenState extends State<ShoppingCardScreen> {
           style: AppFonts.s16w500.copyWith(color: AppColors.regularColor),
         ),
         actions: [
-          IconButton(onPressed: (){}, icon: const Icon(Icons.shopping_bag_outlined, color: AppColors.regularColor,))
+          Stack(
+            children: [
+              IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.shopping_bag_outlined,
+                    color: AppColors.regularColor,
+                  )),
+              Positioned(
+                  top: 10,
+                  left: 20,
+                  child: CircleAvatar(
+                    backgroundColor: AppColors.lengthColor,
+                    radius: 6,
+                    child: Text(
+                      vm.listOfModel.length.toString(),
+                      style: AppFonts.s7w700,
+                    ),
+                  ))
+            ],
+          )
         ],
       ),
-      body: Column(
-        children: [],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 15),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Delivery to",
+                  style: AppFonts.s12w500.copyWith(color: AppColors.lightGrey),
+                ),
+                Text(
+                  "Salatiga City, Central Java",
+                  style: AppFonts.s12w500.copyWith(color: AppColors.lightGrey),
+                )
+              ],
+            ),
+            const Divider(
+              height: 10,
+            ),
+            const SizedBox(
+              height: 22,
+            ),
+            Row(
+              children: [
+                Image.asset(
+                  Images.rectangle25,
+                  width: 82,
+                  height: 72,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Air pods max by Apple",
+                      style: AppFonts.s14w500
+                          .copyWith(color: AppColors.regularColor),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      child: Text(
+                        "Variant: Grey",
+                        style: AppFonts.s12w400
+                            .copyWith(color: AppColors.lightGrey),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Text(
+                        "\$ 199,99",
+                        style: AppFonts.s14w500
+                            .copyWith(color: AppColors.regularColor),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
