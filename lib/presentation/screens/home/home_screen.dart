@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:shop/data/model/category_model.dart';
+import 'package:shop/data/model/banner_model.dart';
+import 'package:shop/presentation/screens/home/custom_search_delegate.dart';
+import 'package:shop/presentation/widgets/category.dart';
 import 'package:shop/presentation/widgets/widgets.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:shop/resources/resources.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
   static const String routeName = '/home';
-  
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 
@@ -29,115 +32,99 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-@override
-Widget build(BuildContext context) {
-  return Scaffold(
-    backgroundColor: Colors.white,
-    appBar: const CustomAppBar(),
-    body: Column(
-      children: [
-        const SizedBox(height: 10),
-        MainSearchBar(
-          onPressed: (){
-            print('Search bar tapped');
-            showSearch(context: context,
-             delegate: CustomSearchDelegate(),
-             );
-          },
-        ),
-        CarouselSlider(
-          options: CarouselOptions(
-            aspectRatio: 2.0,
-            enlargeCenterPage: true,
-            enableInfiniteScroll: false,
-            enlargeStrategy: CenterPageEnlargeStrategy.height,
-            initialPage: 2,
-          ),
-          items: Category.categories
-              .map((category) => HeroCarouselCard(category: category))
-              .toList(),
-        ),
-      ],
-    ),
-    bottomNavigationBar: const CustomNavBar(),
-  );
-}
-}
-
-class CustomSearchDelegate extends SearchDelegate {
-  List<String> searchTerms = [
-    'Iphone 12 pro max',
-    'Camera fujifilm',
-    'Tripod Mini',
-    'Bluetooth speaker',
-    'Drawing pad',
-  ];
-
   @override
-  List<Widget>? buildActions(BuildContext context) {
-    return [
-      IconButton(
-        onPressed: () {
-          query = '';
-        },
-        icon: const Icon(Icons.clear),
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: const CustomAppBar(),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 10),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: MainSearchBar(
+              onPressed: () {
+                print('Search bar tapped');
+                showSearch(
+                  context: context,
+                  delegate: CustomSearchDelegate(),
+                );
+              },
+            ),
+          ),
+          CarouselSlider(
+            options: CarouselOptions(
+              aspectRatio: 2.0,
+              enlargeCenterPage: true,
+              enableInfiniteScroll: false,
+              enlargeStrategy: CenterPageEnlargeStrategy.height,
+              initialPage: 2,
+            ),
+            items: BannerCategory.categories
+                .map((category) => HeroCarouselCard(category: category))
+                .toList(),
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            child: Text(
+              "Category",
+              style: TextStyle(
+                  fontSize: 17.0,
+                  fontWeight: FontWeight.w500,
+                  color: Color.fromARGB(255, 57, 63, 66)),
+            ),
+          ),
+          const SizedBox(height: 13),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _buildProductCategory(
+                    image: Image(
+                      image: AssetImage(Images.apparel),
+                      height: 27,
+                      width: 27,
+                    ),
+                    name: "Apparel"),
+                _buildProductCategory(
+                    image: Image(
+                      image: AssetImage(Images.school),
+                      height: 27,
+                      width: 27,
+                    ),
+                    name: "School"),
+                _buildProductCategory(
+                    image: Image(
+                      image: AssetImage(Images.sport),
+                      height: 27,
+                      width: 27,
+                    ),
+                    name: "Sport"),
+                _buildProductCategory(
+                    image: Image(
+                      image: AssetImage(Images.electronic),
+                      height: 27,
+                      width: 27,
+                    ),
+                    name: "Electronic"),
+                _buildProductCategory(
+                    image: Image(
+                      image: AssetImage(Images.all),
+                      height: 27,
+                      width: 27,
+                    ),
+                    name: "All"),
+              ],
+            ),
+          )
+        ],
       ),
-    ];
+      bottomNavigationBar: const CustomNavBar(),
+    );
   }
 
-@override
-Widget? buildLeading(BuildContext context) {
-  return IconButton(
-    onPressed: () {
-      // Закрываем клавиатуру
-      FocusManager.instance.primaryFocus?.unfocus();
-      // Закрываем поиск
-      close(context, null);
-    },
-    icon: const Icon(Icons.arrow_back),
-  );
-}
-
-
-
-
-@override
-Widget buildResults(BuildContext context) {
-  FocusManager.instance.primaryFocus?.unfocus();
-  List<String> matchQuery = [];
-  for (var tech in searchTerms) {
-    if (tech.toLowerCase().contains(query.toLowerCase())) {
-      matchQuery.add(tech);
-    }
-  }
-  return ListView.builder(
-    itemCount: matchQuery.length,
-    itemBuilder: (context, index) {
-      var result = matchQuery[index];
-      return ListTile(
-        title: Text(result),
-      );
-    },
-  );
-}
-
-@override
-Widget buildSuggestions(BuildContext context) {
-  // FocusManager.instance.primaryFocus?.unfocus();
-  List<String> matchQuery = [];
-  for (var tech in searchTerms) {
-    if (tech.toLowerCase().contains(query.toLowerCase())) {
-      matchQuery.add(tech);
-    }
-  }
-  return ListView.builder(
-    itemCount: matchQuery.length,
-    itemBuilder: (context, index) {
-      var result = matchQuery[index];
-      return ListTile(
-        title: Text(result),
-      );
-    },
-  );
-}
+  _buildProductCategory({required Image image, required String name}) =>
+      Category(image: image, name: name);
 }
