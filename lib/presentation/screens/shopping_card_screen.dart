@@ -92,6 +92,7 @@ class _ShoppingCardScreenState extends State<ShoppingCardScreen> {
                       price: items.models[index].price,
                       quantity: items.models[index].quantity,
                       variant: items.models[index].variant,
+                      id: items.models[index].id,
                     ),
                   ],
                 ),
@@ -162,6 +163,7 @@ class ProductCard extends StatefulWidget {
     required this.model,
     required this.price,
     required this.quantity,
+    required this.id
   });
 
   final String img;
@@ -169,14 +171,18 @@ class ProductCard extends StatefulWidget {
   final String model;
   final double price;
   final int quantity;
+  final int id;
 
   @override
   State<ProductCard> createState() => _ProductCardState();
 }
-
+  
 class _ProductCardState extends State<ProductCard> {
+  
   @override
   Widget build(BuildContext context) {
+    final vm = Provider.of<ShoppingCardProvider>(context);
+    ShoppingCardModel model = ShoppingCardModel(id: widget.id, quantity: widget.quantity, img: widget.img, model: widget.model, variant: widget.variant, price: widget.price);
     return Row(
       children: [
         Checkbox(
@@ -233,17 +239,21 @@ class _ProductCardState extends State<ProductCard> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: Text(
-                          "${widget.quantity.toString()}",
+                          widget.quantity.toString(),
                           style: AppFonts.s14w400
                               .copyWith(color: AppColors.regularColor),
                         ),
                       ),
-                      CustomBtn(icon: Icons.add, onPressed: () {}),
+                      CustomBtn(icon: Icons.add, onPressed: () {
+                        vm.addCard(model);
+                      }),
                       const SizedBox(
                         width: 6,
                       ),
                       CustomBtn(
-                          icon: Icons.delete_forever_outlined, onPressed: () {})
+                          icon: Icons.delete_forever_outlined, onPressed: () {
+                            vm.removeCard(model);
+                          })
                     ],
                   )
                 ],
@@ -267,6 +277,7 @@ class CustomBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return Container(
       width: 26.5,
       height: 26.5,
@@ -275,7 +286,7 @@ class CustomBtn extends StatelessWidget {
           border: Border.all(color: AppColors.mediumGrey)),
       child: IconButton(
           onPressed: () {
-            print("work");
+            
           },
           icon: Icon(
             icon,
