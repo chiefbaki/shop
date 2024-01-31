@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shop/data/model/banner_model.dart';
+import 'package:shop/data/model/my_products.dart';
 import 'package:shop/presentation/screens/home/custom_search_delegate.dart';
 import 'package:shop/presentation/widgets/category.dart';
+import 'package:shop/presentation/widgets/product_card.dart';
 import 'package:shop/presentation/widgets/widgets.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:shop/resources/resources.dart';
@@ -118,7 +120,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     name: "All"),
               ],
             ),
-          )
+          ),
+          Expanded(child: _buildAllProducts())
         ],
       ),
       bottomNavigationBar: const CustomNavBar(),
@@ -127,4 +130,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
   _buildProductCategory({required Image image, required String name}) =>
       Category(image: image, name: name);
+  _buildAllProducts() => GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: (100 / 140),
+            crossAxisSpacing: 12,
+            mainAxisSpacing: 12),
+        itemCount: MyProducts.allProducts.length,
+        itemBuilder: (BuildContext context, int index) {
+          final allProducts = MyProducts.allProducts[index];
+          return ProductCard(
+            product: allProducts,
+          );
+        },
+      );
 }
