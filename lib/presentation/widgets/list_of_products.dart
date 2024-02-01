@@ -13,11 +13,12 @@ class _ListOfProductsState extends State<ListOfProducts> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+      physics: NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          childAspectRatio: (100 / 140),
-          crossAxisSpacing: 12,
-          mainAxisSpacing: 12),
+          childAspectRatio: (100 / 127),
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10),
       itemCount: MyProducts.allProducts.length,
       itemBuilder: (BuildContext context, int index) {
         final allProducts = MyProducts.allProducts[index];
