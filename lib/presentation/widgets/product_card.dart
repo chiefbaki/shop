@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:shop/data/model/product_model.dart';
+import 'package:shop/presentation/routes/app_router.gr.dart';
 
 class ProductCard extends StatefulWidget {
   ProductCard({super.key, required this.product});
@@ -32,9 +34,14 @@ class _ProductCardState extends State<ProductCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image(
-            image: AssetImage(images[0]),
-            fit: BoxFit.cover,
+          GestureDetector(
+            onTap: () {
+              context.router.push(ProductRoute());
+            },
+            child: Image(
+              image: AssetImage(images[0]),
+              fit: BoxFit.cover,
+            ),
           ),
           const SizedBox(height: 10),
           Padding(
