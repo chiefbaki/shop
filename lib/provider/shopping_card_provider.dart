@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shop/data/model/model.dart';
+import 'package:shop/data/model/product_model.dart';
 
 class ShoppingCardProvider extends ChangeNotifier {
-  List<ShoppingCardModel> listOfModel = [];
+  List<Product> listOfModel = [];
   double total = 0;
   double sum() {
     for (var i = 0; i < listOfModel.length; i++) {
@@ -11,7 +11,8 @@ class ShoppingCardProvider extends ChangeNotifier {
     return total;
   }
 
-  void addCard(ShoppingCardModel model) {
+
+  void addCard(Product model) {
     bool res = listOfModel.any((element) => element.id == model.id);
     if (res) {
       listOfModel.firstWhere((element) => element.id == model.id).quantity++;
@@ -23,7 +24,7 @@ class ShoppingCardProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeCard(ShoppingCardModel model) {
+  void removeCard(Product model) {
     bool res = listOfModel.any((element) => element.id == model.id);
     if (res) {
       var exist = listOfModel.firstWhere((element) => element.id == model.id);

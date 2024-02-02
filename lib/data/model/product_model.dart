@@ -5,6 +5,7 @@ class Product {
   final List<String> images;
   final String description;
   final double price;
+  final String variant;
   int quantity;
 
   Product({
@@ -15,5 +16,6 @@ class Product {
     required this.price,
     required this.id,
     required this.quantity,
+    required this.variant
   });
 }

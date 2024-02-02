@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/core/consts/app_colors.dart';
 import 'package:shop/core/consts/app_fonts.dart';
-import 'package:shop/data/model/model.dart';
+import 'package:shop/data/model/my_products.dart';
 import 'package:shop/presentation/widgets/back_btn.dart';
 import 'package:shop/presentation/widgets/product_cards.dart';
 import 'package:shop/provider/shopping_card_provider.dart';
@@ -23,7 +23,7 @@ class _ShoppingCardScreenState extends State<ShoppingCardScreen> {
   @override
   Widget build(BuildContext context) {
     final vm = Provider.of<ShoppingCardProvider>(context);
-    final ShoppingCardList items = ShoppingCardList();
+    final MyProducts items = MyProducts();
     return Scaffold(
       appBar: AppBar(
         leading: BackBtn(
@@ -61,7 +61,7 @@ class _ShoppingCardScreenState extends State<ShoppingCardScreen> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
         child: Column(
           children: [
             Row(
@@ -89,17 +89,10 @@ class _ShoppingCardScreenState extends State<ShoppingCardScreen> {
                 physics: const AlwaysScrollableScrollPhysics(),
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
-                itemCount: items.models.length,
+                itemCount: vm.listOfModel.length,
                 itemBuilder: (context, index) => Column(
                   children: [
-                    ProductCard(
-                      img: items.models[index].img,
-                      model: items.models[index].model,
-                      price: items.models[index].price,
-                      quantity: items.models[index].quantity,
-                      variant: items.models[index].variant,
-                      id: items.models[index].id,
-                    ),
+                    ProductCard(variant: items.allProducts[index].variant, model: items.allProducts[index].name, price: items.allProducts[index].price, quantity: items.allProducts[index].quantity, id: items.allProducts[index].id, category: items.allProducts[index].category, description: items.allProducts[index].description, imgs: items.allProducts[index].images),
                   ],
                 ),
                 separatorBuilder: (context, index) => const SizedBox(
@@ -126,7 +119,7 @@ class _ShoppingCardScreenState extends State<ShoppingCardScreen> {
                           .copyWith(color: AppColors.regularColor),
                     ),
                     Text(
-                      "\$ 00,0",
+                      vm.total.toString(),
                       style: AppFonts.s14w400
                           .copyWith(color: AppColors.regularColor),
                     )
@@ -136,7 +129,9 @@ class _ShoppingCardScreenState extends State<ShoppingCardScreen> {
                   height: 32,
                 ),
                 ElevatedButton(
-                    onPressed: null,
+                    onPressed: (){
+                      
+                    },
                     style: ElevatedButton.styleFrom(
                         fixedSize: const Size(349, 45),
                         backgroundColor: AppColors.activeBtnColor,

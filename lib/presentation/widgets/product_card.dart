@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shop/data/model/product_model.dart';
+import 'package:shop/provider/shopping_card_provider.dart';
 
 class ProductCard extends StatefulWidget {
-  ProductCard({super.key, required this.product});
+  const ProductCard({super.key, required this.product});
   final Product product;
 
   @override
   State<ProductCard> createState() => _ProductCardState();
 }
 
+
 class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     List<String> images = widget.product.images;
+    final vm = Provider.of<ShoppingCardProvider>(context);
 
     return Container(
       width: MediaQuery.of(context).size.width / 2,
@@ -46,7 +50,7 @@ class _ProductCardState extends State<ProductCard> {
                     overflow: TextOverflow.ellipsis,
                     text: TextSpan(
                       text: widget.product.name,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.w400,
                         color: Color.fromARGB(
                             255, 57, 63, 66), // Задайте желаемый цвет шрифта
@@ -66,18 +70,20 @@ class _ProductCardState extends State<ProductCard> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 13.0),
-            child: Container(
+            child: SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  vm.addCard(widget.product);
+                },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromARGB(255, 103, 196, 167),
+                  backgroundColor: const Color.fromARGB(255, 103, 196, 167),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8.0),
                   child: Text(
                     'Add to cart',
                     style: TextStyle(fontSize: 14.0, color: Colors.white),

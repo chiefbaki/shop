@@ -12,21 +12,20 @@ class CustomBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return Container(
-      width: 26.5,
-      height: 26.5,
+      width: 22.5,
+      height: 22.5,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           border: Border.all(color: AppColors.mediumGrey)),
-      child: IconButton(
-          onPressed: () {
-            
-          },
-          icon: Icon(
-            icon,
-            size: 11,
-          )),
+      child: Center(
+        child: IconButton(
+            onPressed: onPressed,
+            icon: Icon(
+              icon,
+              size: 7,
+            )),
+      ),
     );
   }
 }

@@ -12,16 +12,17 @@ class ListOfProducts extends StatefulWidget {
 class _ListOfProductsState extends State<ListOfProducts> {
   @override
   Widget build(BuildContext context) {
+    MyProducts model = MyProducts();
     return GridView.builder(
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: (100 / 127),
           crossAxisSpacing: 10,
           mainAxisSpacing: 10),
-      itemCount: MyProducts.allProducts.length,
+      itemCount: model.allProducts.length,
       itemBuilder: (BuildContext context, int index) {
-        final allProducts = MyProducts.allProducts[index];
+        final allProducts = model.allProducts[index];
         return ProductCard(
           product: allProducts,
         );
