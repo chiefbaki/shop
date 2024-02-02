@@ -3,6 +3,7 @@
 # Generates unit tests to verify that the assets exists in assets directory
 generate_tests: true
 
+
 # Use this to remove vcs noise created by the `generated` comments in dart code
 no_comments: true
 
@@ -33,3 +34,4 @@ groups:
   - path: assets/imgs
     class_name: Images
     types: [ .png, .jpg, .jpeg ]
+
