@@ -4,7 +4,7 @@ import 'package:shop/core/consts/app_colors.dart';
 import 'package:shop/core/consts/app_fonts.dart';
 import 'package:shop/data/model/model.dart';
 import 'package:shop/presentation/widgets/back_btn.dart';
-import 'package:shop/presentation/widgets/product_card.dart';
+import 'package:shop/presentation/widgets/product_cards.dart';
 import 'package:shop/provider/shopping_card_provider.dart';
 
 class ShoppingCardScreen extends StatefulWidget {
