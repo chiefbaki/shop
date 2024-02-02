@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:provider/provider.dart';
+import 'package:shop/provider/shopping_card_provider.dart';
 
 @RoutePage()
 class ProductScreen extends StatelessWidget {
@@ -10,7 +12,7 @@ class ProductScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Details product"),
+        title: const Text("Details product"),
         centerTitle: true,
       ),
       body: const DetailsPageBody(),
@@ -28,6 +30,7 @@ class DetailsPageBody extends StatefulWidget {
 class _DetailsPageBodyState extends State<DetailsPageBody> {
   @override
   Widget build(BuildContext context) {
+    final vm = Provider.of<ShoppingCardProvider>(context);
     return Column(
       children: [
         _imageCarousel(),
@@ -36,7 +39,7 @@ class _DetailsPageBodyState extends State<DetailsPageBody> {
           child: ListView(
             shrinkWrap: true,
             scrollDirection: Axis.vertical,
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             children: [
               const Text(
                 "Choose the color",
