@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:shop/data/model/product_model.dart';
 import 'package:shop/provider/shopping_card_provider.dart';
 
+import '../routes/app_router.gr.dart';
+
 class ProductCard extends StatefulWidget {
   const ProductCard({super.key, required this.product});
   final Product product;
@@ -30,7 +32,7 @@ class _ProductCardState extends State<ProductCard> {
             color: Color.fromARGB(255, 175, 175, 175).withOpacity(0.2),
             spreadRadius: 2,
             blurRadius: 2,
-            offset: Offset(0, 3), // changes position of shadow
+            offset: const Offset(0, 3), // changes position of shadow
           ),
         ],
       ),

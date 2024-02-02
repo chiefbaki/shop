@@ -13,7 +13,7 @@ class ProductScreen extends StatelessWidget {
         title: Text("Details product"),
         centerTitle: true,
       ),
-      body: DetailsPageBody(),
+      body: const DetailsPageBody(),
     );
   }
 }
@@ -85,9 +85,9 @@ class _DetailsPageBodyState extends State<DetailsPageBody> {
                           decoration: BoxDecoration(
                               color: Colors.grey[600],
                               borderRadius: BorderRadius.circular(50)),
-                          child: Icon(Icons.apple),
+                          child: const Icon(Icons.apple),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 12,
                         ),
                         const Column(
@@ -124,10 +124,10 @@ class _DetailsPageBodyState extends State<DetailsPageBody> {
             ],
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 14,
         ),
-        Container(
+        SizedBox(
           width: double.infinity, // Takes the full screen width
           height: 102.0, // Set the desired height
           child: Row(
@@ -136,35 +136,35 @@ class _DetailsPageBodyState extends State<DetailsPageBody> {
             children: [
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    minimumSize: Size(167, 45),
-                    padding: EdgeInsets.fromLTRB(14, 15, 14, 15),
+                    minimumSize: const Size(167, 45),
+                    padding: const EdgeInsets.fromLTRB(14, 15, 14, 15),
                     elevation: 1,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4),
                     ),
-                    backgroundColor: Color(0xff67C4A7)),
+                    backgroundColor: const Color(0xff67C4A7)),
                 onPressed: () {},
-                child: Text(
+                child: const Text(
                   'Add to Cart',
                   style: TextStyle(color: Colors.white),
                 ),
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  minimumSize: Size(167, 45),
-                  padding: EdgeInsets.fromLTRB(14, 15, 14, 15),
+                  minimumSize: const Size(167, 45),
+                  padding: const EdgeInsets.fromLTRB(14, 15, 14, 15),
                   elevation: 1,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(4),
-                    side: BorderSide(
+                    side: const BorderSide(
                       color: Color(0xFFD9D9D9),
                       width: 1,
                     ),
                   ),
-                  backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                  backgroundColor: const Color.fromARGB(255, 255, 255, 255),
                 ),
                 onPressed: () {},
-                child: Text(
+                child: const Text(
                   'But Now',
                   style: TextStyle(color: Colors.black),
                 ),

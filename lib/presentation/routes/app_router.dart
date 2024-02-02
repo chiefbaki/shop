@@ -9,6 +9,7 @@ class AppRouter extends $AppRouter {
         AutoRoute(page: DashboardRoute.page, initial: true, children: [
           AutoRoute(
             page: HomeRoute.page,
+            initial: true
           ),
           AutoRoute(
             page: CatalogRoute.page,
@@ -16,7 +17,7 @@ class AppRouter extends $AppRouter {
           AutoRoute(
             page: ProfileRoute.page,
           ),
-          AutoRoute(page: ProductRoute.page, initial: true),
+          AutoRoute(page: ProductRoute.page,),
         ]),
         AutoRoute(
           page: ShoppingCardRoute.page,
