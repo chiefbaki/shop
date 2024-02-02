@@ -5,6 +5,7 @@ import 'package:shop/core/consts/app_colors.dart';
 import 'package:shop/core/consts/app_fonts.dart';
 import 'package:shop/data/model/my_products.dart';
 import 'package:shop/presentation/widgets/back_btn.dart';
+import 'package:shop/presentation/widgets/cart_icon_btn.dart';
 import 'package:shop/presentation/widgets/product_cards.dart';
 import 'package:shop/provider/shopping_card_provider.dart';
 
@@ -36,27 +37,7 @@ class _ShoppingCardScreenState extends State<ShoppingCardScreen> {
           style: AppFonts.s16w500.copyWith(color: AppColors.regularColor),
         ),
         actions: [
-          Stack(
-            children: [
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.shopping_bag_outlined,
-                    color: AppColors.regularColor,
-                  )),
-              Positioned(
-                  top: 10,
-                  left: 20,
-                  child: CircleAvatar(
-                    backgroundColor: AppColors.lengthColor,
-                    radius: 6,
-                    child: Text(
-                      vm.listOfModel.length.toString(),
-                      style: AppFonts.s7w700,
-                    ),
-                  ))
-            ],
-          )
+          CardIcon(vm: vm)
         ],
       ),
       body: Padding(
@@ -152,3 +133,4 @@ class _ShoppingCardScreenState extends State<ShoppingCardScreen> {
     );
   }
 }
+

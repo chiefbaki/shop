@@ -1,13 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:shop/data/model/banner_model.dart';
 import 'package:shop/presentation/screens/home/custom_search_delegate.dart';
 import 'package:shop/presentation/widgets/category.dart';
 import 'package:shop/presentation/widgets/list_of_products.dart';
 import 'package:shop/presentation/widgets/widgets.dart';
-import 'package:shop/provider/shopping_card_provider.dart';
 import 'package:shop/resources/resources.dart';
 
 @RoutePage()

@@ -1,10 +1,10 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/data/model/product_model.dart';
+import 'package:shop/presentation/screens/product/product_screen.dart';
 import 'package:shop/provider/shopping_card_provider.dart';
 
-import '../routes/app_router.gr.dart';
+
 
 class ProductCard extends StatefulWidget {
   const ProductCard({super.key, required this.product});
@@ -14,13 +14,12 @@ class ProductCard extends StatefulWidget {
   State<ProductCard> createState() => _ProductCardState();
 }
 
-
 class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     List<String> images = widget.product.images;
     final vm = Provider.of<ShoppingCardProvider>(context);
-
+    
     return Container(
       width: MediaQuery.of(context).size.width / 2,
       padding: const EdgeInsets.all(0),
@@ -29,7 +28,7 @@ class _ProductCardState extends State<ProductCard> {
         color: const Color.fromARGB(255, 230, 230, 230).withOpacity(0.5),
         boxShadow: [
           BoxShadow(
-            color: Color.fromARGB(255, 175, 175, 175).withOpacity(0.2),
+            color: const Color.fromARGB(255, 175, 175, 175).withOpacity(0.2),
             spreadRadius: 2,
             blurRadius: 2,
             offset: const Offset(0, 3), // changes position of shadow
@@ -41,7 +40,11 @@ class _ProductCardState extends State<ProductCard> {
         children: [
           GestureDetector(
             onTap: () {
-              context.router.push(ProductRoute());
+              
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ProductScreen(model: widget.product,)));
             },
             child: Image(
               image: AssetImage(images[0]),
@@ -72,8 +75,8 @@ class _ProductCardState extends State<ProductCard> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 13.0),
             child: Text(
-              '\$' + widget.product.price.toString(),
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              '\$${widget.product.price}',
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
           ),
           Padding(

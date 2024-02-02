@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:shop/data/model/product_model.dart';
 
 class ShoppingCardProvider extends ChangeNotifier {
+
+  Product getModel(Product el){
+    return el;
+  }
+
   List<Product> listOfModel = [];
   double total = 0;
   double sum() {
@@ -10,7 +15,6 @@ class ShoppingCardProvider extends ChangeNotifier {
     }
     return total;
   }
-
 
   void addCard(Product model) {
     bool res = listOfModel.any((element) => element.id == model.id);

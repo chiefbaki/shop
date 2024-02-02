@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shop/presentation/widgets/cart_icon_btn.dart';
+import 'package:shop/provider/shopping_card_provider.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final vm = Provider.of<ShoppingCardProvider>(context);
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
@@ -53,7 +56,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
             Row(
               children: [
-                CartIcon(),
+                CardIcon(vm: vm),
                 IconButton(
                   icon: const Icon(Icons.notifications),
                   onPressed: () {
