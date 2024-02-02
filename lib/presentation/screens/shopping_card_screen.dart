@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/core/consts/app_colors.dart';
@@ -7,6 +8,8 @@ import 'package:shop/presentation/widgets/back_btn.dart';
 import 'package:shop/presentation/widgets/product_cards.dart';
 import 'package:shop/provider/shopping_card_provider.dart';
 
+
+@RoutePage()
 class ShoppingCardScreen extends StatefulWidget {
   const ShoppingCardScreen({super.key});
 
@@ -24,7 +27,9 @@ class _ShoppingCardScreenState extends State<ShoppingCardScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: BackBtn(
-          onPressed: () {},
+          onPressed: () {
+            context.router.pop();
+          },
         ),
         centerTitle: false,
         title: Text(

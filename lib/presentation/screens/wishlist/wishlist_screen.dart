@@ -1,25 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:shop/presentation/widgets/category.dart';
-import 'package:shop/presentation/widgets/widgets.dart';
 
+@RoutePage()
 class WishListScreen extends StatelessWidget {
   const WishListScreen({super.key});
-  static const String routeName = '/wishlist';
-  static Route route() {
-    return MaterialPageRoute(
-      settings: const RouteSettings(name: routeName),
-      builder: (_) => const WishListScreen(),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        bottomNavigationBar: CustomNavBar(),
-        body: Container());
+    return const Scaffold(
+      body: Center(child: Text("card")),
+    );
   }
-
-  _buildProductCategory({required Image image, required String name}) =>
-      Category(image: image, name: name);
 }

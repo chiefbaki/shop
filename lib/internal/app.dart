@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop/presentation/screens/shopping_card_screen.dart';
+import 'package:shop/presentation/routes/app_router.dart';
 import 'package:shop/provider/shopping_card_provider.dart';
 
 class MyApp extends StatelessWidget {
@@ -10,7 +10,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => ShoppingCardProvider(),
-      child: MaterialApp(
+      child: MaterialApp.router(
+        routerConfig: AppRouter().config(),
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           appBarTheme: const AppBarTheme(
@@ -18,7 +19,6 @@ class MyApp extends StatelessWidget {
             elevation: 0.5
           )
         ),
-        home: const ShoppingCardScreen(),
       ),
     );
   }

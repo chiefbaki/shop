@@ -3,18 +3,21 @@ part of 'resources.dart';
 class Images {
   Images._();
 
-
-  static const String rectangle25 = 'assets/imgs/Rectangle 25.png';
-  static const String rectangle17 = 'assets/imgs/Rectangle_17.png';
-  static const String rectangle30 = 'assets/imgs/Rectangle_30.png';
-  static const String earphones = 'assets/imgs/earphones.png';
-  static const String img1 = 'assets/imgs/img1.png';
-  static const String img2 = 'assets/imgs/img2.png';
-
-  static const String apparel = 'assets/imgs/apparel.png';
-  static const String electronic = 'assets/imgs/electronic.png';
-  static const String school = 'assets/imgs/school.png';
-  static const String sport = 'assets/imgs/sport.png';
-  static const String all = 'assets/imgs/all.png';
-
+  static const String rectangle25 = 'assets/images/Rectangle 25.png';
+  static const String rectangle17 = 'assets/images/Rectangle_17.png';
+  static const String rectangle30 = 'assets/images/Rectangle_30.png';
+  static const String airpodmax = 'assets/images/airpodmax.png';
+  static const String all = 'assets/images/all.png';
+  static const String apparel = 'assets/images/apparel.png';
+  static const String banner1 = 'assets/images/banner 1.png';
+  static const String beats = 'assets/images/beats.png';
+  static const String earphones = 'assets/images/earphones.png';
+  static const String electronic = 'assets/images/electronic.png';
+  static const String img1 = 'assets/images/img1.png';
+  static const String img2 = 'assets/images/img2.png';
+  static const String monitor = 'assets/images/monitor.png';
+  static const String mug = 'assets/images/mug.png';
+  static const String school = 'assets/images/school.png';
+  static const String sport = 'assets/images/sport.png';
+  
 }

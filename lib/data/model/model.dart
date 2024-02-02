@@ -7,6 +7,7 @@ class ShoppingCardModel {
   final String img;
   final int id;
   int quantity;
+  
   ShoppingCardModel(
       {required this.id,
       required this.quantity,

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:shop/data/model/banner_model.dart';
@@ -7,31 +8,17 @@ import 'package:shop/presentation/widgets/list_of_products.dart';
 import 'package:shop/presentation/widgets/widgets.dart';
 import 'package:shop/resources/resources.dart';
 
+
+@RoutePage()
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
-  static const String routeName = '/home';
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 
-  static Route route() {
-    return MaterialPageRoute(
-      settings: const RouteSettings(name: routeName),
-      builder: (_) => const HomeScreen(),
-    );
-  }
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  @override
-  void initState() {
-    super.initState();
-
-    // Убираем все предыдущие экраны из стека навигации
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Navigator.popUntil(context, (route) => route.isFirst);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: const CustomAppBar(),
       body: ListView(
         children: [
-          Container(
+          SizedBox(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -86,35 +73,35 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       _buildProductCategory(
-                          image: Image(
+                          image: const Image(
                             image: AssetImage(Images.apparel),
                             height: 27,
                             width: 27,
                           ),
                           name: "Apparel"),
                       _buildProductCategory(
-                          image: Image(
+                          image: const Image(
                             image: AssetImage(Images.school),
                             height: 27,
                             width: 27,
                           ),
                           name: "School"),
                       _buildProductCategory(
-                          image: Image(
+                          image: const Image(
                             image: AssetImage(Images.sport),
                             height: 27,
                             width: 27,
                           ),
                           name: "Sport"),
                       _buildProductCategory(
-                          image: Image(
+                          image: const Image(
                             image: AssetImage(Images.electronic),
                             height: 27,
                             width: 27,
                           ),
                           name: "Electronic"),
                       _buildProductCategory(
-                          image: Image(
+                          image: const Image(
                             image: AssetImage(Images.all),
                             height: 27,
                             width: 27,
@@ -124,9 +111,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 const SizedBox(height: 13),
-                Row(
+                const Row(
                   children: [
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20.0),
                       child: Text(
                         "Recent products",
@@ -139,12 +126,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 const SizedBox(height: 13),
-                Container(
+                SizedBox(
                   height: MediaQuery.of(context)
                       .size
                       .height, // Установите ограничение по высоте
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
                     child: ListOfProducts(),
                   ),
                 ),
@@ -153,7 +140,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: const CustomNavBar(),
     );
   }
 

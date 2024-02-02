@@ -1,48 +1,19 @@
-import 'package:flutter/material.dart';
-import 'package:shop/presentation/screens/screens.dart';
+import 'package:auto_route/auto_route.dart';
 
-class AppRouter {
-  static Route onGenerateRoute(RouteSettings settings) {
-    print('Thus is route: ${settings.name}');
 
-    switch (settings.name) {
-      case '/':
-        return HomeScreen.route();
+import 'app_router.gr.dart';
 
-      case HomeScreen.routeName:
-        return HomeScreen.route();
-
-      case CartScreen.routeName:
-        return CartScreen.route();
-
-      case ProductScreen.routeName:
-        return ProductScreen.route();
-
-      case WishListScreen.routeName:
-        return WishListScreen.route();
-
-      case CatalogScreen.routeName:
-        return CatalogScreen.route();
-
-      case HistoryScreen.routeName:
-        return HistoryScreen.route();
-
-      case ProfileScreen.routeName:
-        return ProfileScreen.route();
-
-      default:
-        return _errorRoute();
-    }
-  }
-
-  static Route _errorRoute() {
-    return MaterialPageRoute(
-      settings:
-          const RouteSettings(name: '/error', arguments: ObjectKey(HomeScreen)),
-      fullscreenDialog: true,
-      builder: (_) => Scaffold(
-        appBar: AppBar(title: const Text('Error')),
-      ),
-    );
-  }
+@AutoRouterConfig()
+class AppRouter extends $AppRouter {
+  @override
+  List<AutoRoute> get routes => [
+        AutoRoute(page: DashboardRoute.page, initial: true, children: [
+          AutoRoute(page: HomeRoute.page, initial: true),
+          AutoRoute(page: CatalogRoute.page,),
+          AutoRoute(page: ProfileRoute.page,),
+          AutoRoute(page: ProductRoute.page,),
+        ]),
+        AutoRoute(page: ShoppingCardRoute.page,)
+      ];
 }
+
