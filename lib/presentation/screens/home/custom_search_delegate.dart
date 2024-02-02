@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:shop/data/model/my_products.dart';
+import 'package:shop/data/model/product_model.dart';
+import 'package:shop/presentation/widgets/list_of_products.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
-  List<String> searchTerms = [
-    'Iphone 12 pro max',
-    'Camera fujifilm',
-    'Tripod Mini',
-    'Bluetooth speaker',
-    'Drawing pad',
-  ];
+  List<Product> listOfProducts = MyProducts.allProducts;
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -36,41 +33,11 @@ class CustomSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    FocusManager.instance.primaryFocus?.unfocus();
-    List<String> matchQuery = [];
-    for (var tech in searchTerms) {
-      if (tech.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(tech);
-      }
-    }
-    return ListView.builder(
-      itemCount: matchQuery.length,
-      itemBuilder: (context, index) {
-        var result = matchQuery[index];
-        return ListTile(
-          title: Text(result),
-        );
-      },
-    );
+    return ListOfProducts();
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    // FocusManager.instance.primaryFocus?.unfocus();
-    List<String> matchQuery = [];
-    for (var tech in searchTerms) {
-      if (tech.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(tech);
-      }
-    }
-    return ListView.builder(
-      itemCount: matchQuery.length,
-      itemBuilder: (context, index) {
-        var result = matchQuery[index];
-        return ListTile(
-          title: Text(result),
-        );
-      },
-    );
+    return ListOfProducts();
   }
 }
