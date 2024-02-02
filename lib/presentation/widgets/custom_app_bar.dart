@@ -1,8 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:shop/presentation/routes/app_router.gr.dart';
-
-
+import 'package:shop/presentation/widgets/cart_icon_btn.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});
@@ -56,13 +53,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
             Row(
               children: [
-                IconButton(
-                  icon: const Icon(Icons.shopping_cart),
-                  onPressed: () {
-                  
-                  context.router.push(const ShoppingCardRoute());
-                  },
-                ),
+                CartIcon(),
                 IconButton(
                   icon: const Icon(Icons.notifications),
                   onPressed: () {
