@@ -48,7 +48,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 });
                 tabsRouter.setActiveIndex(index);
                 }                
-                tabsRouter.setActiveIndex(index);                
+                             
               },                
               items: const [                
                 BottomNavigationBarItem(icon: Icon(Icons.home, color: AppColors.mediumGrey,), label: ""),                
