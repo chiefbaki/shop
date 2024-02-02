@@ -219,7 +219,9 @@ class _ProductScreenState extends State<ProductScreen> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         backgroundColor: const Color(0xff67C4A7)),
-                    onPressed: () {},
+                    onPressed: () {
+                      vm.addCard(widget.model!);
+                    },
                     child: const Text(
                       'Add to Cart',
                       style: TextStyle(color: Colors.white),
@@ -257,11 +259,11 @@ ElevatedButton _followButton() {
   return ElevatedButton(
     onPressed: () {},
     style: ElevatedButton.styleFrom(
-      fixedSize: Size(107, 37),
-      backgroundColor: Color(0xFFffffff),
+      fixedSize: const Size(107, 37),
+      backgroundColor: const Color(0xFFffffff),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(4),
-        side: BorderSide(color: Color(0xFFD9D9D9), width: 1),
+        side: const BorderSide(color: Color(0xFFD9D9D9), width: 1),
       ),
     ),
     child: const Text(
