@@ -14,11 +14,8 @@ class MyApp extends StatelessWidget {
         routerConfig: AppRouter().config(),
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          appBarTheme: const AppBarTheme(
-            color: Colors.white,
-            elevation: 0.5
-          )
-        ),
+            appBarTheme:
+                const AppBarTheme(color: Colors.white, elevation: 0.5)),
       ),
     );
   }
