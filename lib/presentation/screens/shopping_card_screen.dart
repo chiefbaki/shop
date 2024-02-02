@@ -8,7 +8,6 @@ import 'package:shop/presentation/widgets/back_btn.dart';
 import 'package:shop/presentation/widgets/product_cards.dart';
 import 'package:shop/provider/shopping_card_provider.dart';
 
-
 @RoutePage()
 class ShoppingCardScreen extends StatefulWidget {
   const ShoppingCardScreen({super.key});
