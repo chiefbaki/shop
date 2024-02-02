@@ -19,5 +19,8 @@ class Images {
   static const String mug = 'assets/images/mug.png';
   static const String school = 'assets/images/school.png';
   static const String sport = 'assets/images/sport.png';
-  
+  static const String heart = 'assets/images/Heart.png';
+  static const String home = 'assets/images/Home.png';
+  static const String paper = 'assets/images/Paper.png';
+  static const String profile = 'assets/images/Profile.png';
 }
