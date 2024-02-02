@@ -7,7 +7,6 @@ import 'package:shop/presentation/widgets/back_btn.dart';
 import 'package:shop/presentation/widgets/product_card.dart';
 import 'package:shop/provider/shopping_card_provider.dart';
 
-
 class ShoppingCardScreen extends StatefulWidget {
   const ShoppingCardScreen({super.key});
 
@@ -80,7 +79,7 @@ class _ShoppingCardScreenState extends State<ShoppingCardScreen> {
               height: 22,
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.63,
+              height: MediaQuery.of(context).size.height * 0.65,
               child: ListView.separated(
                 physics: const AlwaysScrollableScrollPhysics(),
                 shrinkWrap: true,
@@ -108,9 +107,8 @@ class _ShoppingCardScreenState extends State<ShoppingCardScreen> {
               height: 1,
               decoration: const BoxDecoration(color: AppColors.mediumGrey),
             ),
-            Text(
-              "Egronomics",
-              style: AppFonts.s14w400.copyWith(color: AppColors.regularColor),
+            const SizedBox(
+              height: 14,
             ),
             Column(
               children: [
@@ -135,6 +133,7 @@ class _ShoppingCardScreenState extends State<ShoppingCardScreen> {
                 ElevatedButton(
                     onPressed: null,
                     style: ElevatedButton.styleFrom(
+                        fixedSize: const Size(349, 45),
                         backgroundColor: AppColors.activeBtnColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(4),
