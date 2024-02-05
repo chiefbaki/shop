@@ -40,7 +40,7 @@ class CustomSearchDelegate extends SearchDelegate {
         matchQuery.add(product);
       }
     }
-
+    // тут логика поиска
     return Padding(
       padding: const EdgeInsets.all(13.0),
       child: GridView.builder(
