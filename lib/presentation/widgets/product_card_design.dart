@@ -4,22 +4,20 @@ import 'package:shop/data/model/product_model.dart';
 import 'package:shop/presentation/screens/product/product_screen.dart';
 import 'package:shop/provider/shopping_card_provider.dart';
 
-
-
-class ProductCard extends StatefulWidget {
-  const ProductCard({super.key, required this.product});
+class ProductCardDesign extends StatefulWidget {
+  const ProductCardDesign({super.key, required this.product});
   final Product product;
 
   @override
-  State<ProductCard> createState() => _ProductCardState();
+  State<ProductCardDesign> createState() => _ProductCardDesignState();
 }
 
-class _ProductCardState extends State<ProductCard> {
+class _ProductCardDesignState extends State<ProductCardDesign> {
   @override
   Widget build(BuildContext context) {
     List<String> images = widget.product.images;
     final vm = Provider.of<ShoppingCardProvider>(context);
-    
+
     return Container(
       width: MediaQuery.of(context).size.width / 2,
       padding: const EdgeInsets.all(0),
@@ -40,11 +38,12 @@ class _ProductCardState extends State<ProductCard> {
         children: [
           GestureDetector(
             onTap: () {
-              
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ProductScreen(model: widget.product,)));
+                      builder: (context) => ProductScreen(
+                            model: widget.product,
+                          )));
             },
             child: Image(
               image: AssetImage(images[0]),

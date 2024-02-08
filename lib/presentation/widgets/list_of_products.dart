@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop/data/model/my_products.dart';
-import 'package:shop/presentation/widgets/product_card.dart';
+
+import 'product_card_design.dart';
 
 class ListOfProducts extends StatefulWidget {
   const ListOfProducts({super.key});
@@ -12,18 +13,17 @@ class ListOfProducts extends StatefulWidget {
 class _ListOfProductsState extends State<ListOfProducts> {
   @override
   Widget build(BuildContext context) {
-    MyProducts model = MyProducts();
     return GridView.builder(
-      physics: const NeverScrollableScrollPhysics(),
+      physics: NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: (100 / 127),
           crossAxisSpacing: 10,
           mainAxisSpacing: 10),
-      itemCount: model.allProducts.length,
+      itemCount: MyProducts().allProducts.length,
       itemBuilder: (BuildContext context, int index) {
-        final allProducts = model.allProducts[index];
-        return ProductCard(
+        final allProducts = MyProducts().allProducts[index];
+        return ProductCardDesign(
           product: allProducts,
         );
       },
