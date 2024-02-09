@@ -36,9 +36,7 @@ class _ShoppingCardScreenState extends State<ShoppingCardScreen> {
           "Your Cart",
           style: AppFonts.s16w500.copyWith(color: AppColors.regularColor),
         ),
-        actions: [
-          CardIcon(vm: vm)
-        ],
+        actions: [CardIcon(vm: vm)],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
@@ -72,7 +70,15 @@ class _ShoppingCardScreenState extends State<ShoppingCardScreen> {
                 itemCount: vm.listOfModel.length,
                 itemBuilder: (context, index) => Column(
                   children: [
-                    ProductCard(variant: items.allProducts[index].variant, model: items.allProducts[index].name, price: items.allProducts[index].price, quantity: items.allProducts[index].quantity, id: items.allProducts[index].id, category: items.allProducts[index].category, description: items.allProducts[index].description, imgs: items.allProducts[index].images),
+                    ProductCard(
+                        variant: items.allProducts[index].variant,
+                        model: items.allProducts[index].name,
+                        price: items.allProducts[index].price,
+                        quantity: items.allProducts[index].quantity,
+                        id: items.allProducts[index].id,
+                        category: items.allProducts[index].category,
+                        description: items.allProducts[index].description,
+                        imgs: items.allProducts[index].images),
                   ],
                 ),
                 separatorBuilder: (context, index) => const SizedBox(
@@ -109,9 +115,7 @@ class _ShoppingCardScreenState extends State<ShoppingCardScreen> {
                   height: 32,
                 ),
                 ElevatedButton(
-                    onPressed: (){
-                      
-                    },
+                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
                         fixedSize: const Size(349, 45),
                         backgroundColor: AppColors.activeBtnColor,
@@ -133,4 +137,3 @@ class _ShoppingCardScreenState extends State<ShoppingCardScreen> {
     );
   }
 }
-
