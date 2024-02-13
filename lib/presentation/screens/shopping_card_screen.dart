@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:shop/core/consts/app_colors.dart';
 import 'package:shop/core/consts/app_fonts.dart';
 import 'package:shop/data/model/my_products.dart';
+import 'package:shop/data/model/product_model.dart';
 import 'package:shop/presentation/widgets/back_btn.dart';
 import 'package:shop/presentation/widgets/cart_icon_btn.dart';
 import 'package:shop/presentation/widgets/product_cards.dart';
@@ -71,7 +72,7 @@ class _ShoppingCardScreenState extends State<ShoppingCardScreen> {
                 itemBuilder: (context, index) => Column(
                   children: [
                     ProductCard(
-                        variant: items.allProducts[index].variant,
+                        variant: items.allProducts[index].variant ?? "",
                         model: items.allProducts[index].name,
                         price: items.allProducts[index].price,
                         quantity: items.allProducts[index].quantity,

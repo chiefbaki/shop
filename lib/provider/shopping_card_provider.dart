@@ -2,24 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:shop/data/model/product_model.dart';
 
 class ShoppingCardProvider extends ChangeNotifier {
-
-  Product getModel(Product el){
-    return el;
-  }
-
   List<Product> listOfModel = [];
   double total = 0;
   double sum() {
+    double sum2 = 0;
     for (var i = 0; i < listOfModel.length; i++) {
-      total += listOfModel[i].price * listOfModel[i].quantity;
+      sum2 += listOfModel[i].price * listOfModel[i].quantity;
     }
-    return total;
+
+    return sum2;
   }
 
   void addCard(Product model) {
     bool res = listOfModel.any((element) => element.id == model.id);
+    print(model.quantity);
     if (res) {
       listOfModel.firstWhere((element) => element.id == model.id).quantity++;
+      print(model.quantity);
     } else {
       listOfModel.add(model);
     }

@@ -101,7 +101,7 @@ class _ProductCardState extends State<ProductCard> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: Text(
-                          widget.quantity.toString(),
+                          model.quantity.toString(),
                           style: AppFonts.s14w400
                               .copyWith(color: AppColors.regularColor),
                         ),
@@ -110,6 +110,7 @@ class _ProductCardState extends State<ProductCard> {
                           icon: Icons.add,
                           onPressed: () {
                             vm.addCard(model);
+                            vm.sum();
                           }),
                       const SizedBox(
                         width: 6,

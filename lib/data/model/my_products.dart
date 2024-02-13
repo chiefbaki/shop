@@ -3,7 +3,7 @@ import "product_model.dart";
 class MyProducts {
   List<Product> allProducts = [
     Product(
-      variant: "Grey",
+        variant: "Grey",
         name: "Air pods max by Apple",
         category: "electronic",
         images: ["assets/images/airpodmax.png"],
@@ -13,7 +13,7 @@ class MyProducts {
         id: 1,
         quantity: 1),
     Product(
-      variant: "120 FPS",
+        variant: "120 FPS",
         name: "Monitor LG 22inc 4K 120Fps",
         category: "electronic",
         images: ["assets/images/monitor.png"],
@@ -23,7 +23,7 @@ class MyProducts {
         id: 2,
         quantity: 1),
     Product(
-      variant: "Nurs Got",
+        variant: "Nurs Got",
         name: "Aestechic Mug",
         category: "apparel",
         images: ["assets/images/mug.png"],
@@ -33,7 +33,7 @@ class MyProducts {
         id: 3,
         quantity: 1),
     Product(
-      variant: "Arthur tozhe",
+        variant: "Arthur tozhe",
         name: "Beats earphone",
         category: "electronic",
         images: ["assets/images/beats.png"],
