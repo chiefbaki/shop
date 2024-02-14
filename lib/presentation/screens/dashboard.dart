@@ -17,12 +17,7 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     int currentIndex = 0;
     return AutoTabsRouter(
-      routes: const [
-        HomeRoute(),
-        CatalogRoute(),
-        ProductRoute(),
-        ProfileRoute()
-      ],
+      routes: [HomeRoute(), WishListRoute(), ProductRoute(), ProfileRoute()],
       transitionBuilder: (context, child, animation) => FadeTransition(
         opacity: animation,
         child: child,

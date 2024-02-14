@@ -4,29 +4,13 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/data/model/product_model.dart';
 import 'package:shop/presentation/widgets/cart_icon_btn.dart';
+import 'package:shop/provider/favorite_list_provider.dart';
 import 'package:shop/provider/shopping_card_provider.dart';
 
 @RoutePage()
 class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key, this.model});
   final Product? model;
-  // this.name = "",
-  // this.category = "",
-  // this.images = const [],
-  // this.description = "",
-  // this.price = 0.0,
-  // this.id = 0,
-  // this.quantity = 0,
-  // this.variant = "",
-
-  // final String name;
-  // final String category;
-  // final List<String> images;
-  // final String description;
-  // final double price;
-  // final int id;
-  // final int quantity;
-  // final String variant;
 
   @override
   State<ProductScreen> createState() => _ProductScreenState();
@@ -36,6 +20,7 @@ class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
     final vm = Provider.of<ShoppingCardProvider>(context);
+    final favorite_provider = Provider.of<FavoriteProvider>(context);
 
     return Scaffold(
         appBar: AppBar(
@@ -98,10 +83,17 @@ class _ProductScreenState extends State<ProductScreen> {
                     decoration: BoxDecoration(
                         color: Colors.grey,
                         borderRadius: BorderRadius.circular(50)),
-                    child: IconButton(
-                        iconSize: 28,
-                        onPressed: () {},
-                        icon: const Icon(Icons.heart_broken)),
+                    child: GestureDetector(
+                      onTap: () =>
+                          favorite_provider.toggleFavorite(widget.model),
+                      child: Icon(
+                        favorite_provider.isExist(widget.model)
+                            ? Icons.favorite
+                            : Icons.favorite_border_outlined,
+                        color: Colors.red,
+                        size: 35,
+                      ),
+                    ),
                   ),
                 ],
               ),

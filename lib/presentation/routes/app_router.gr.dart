@@ -9,6 +9,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i9;
+import 'package:flutter/material.dart' as _i10;
+import 'package:shop/data/model/product_model.dart' as _i11;
 import 'package:shop/presentation/screens/catalog/catalog_screen.dart' as _i1;
 import 'package:shop/presentation/screens/dashboard.dart' as _i2;
 import 'package:shop/presentation/screens/history/history_screen.dart' as _i3;
@@ -48,9 +50,14 @@ abstract class $AppRouter extends _i9.RootStackRouter {
       );
     },
     ProductRoute.name: (routeData) {
+      final args = routeData.argsAs<ProductRouteArgs>(
+          orElse: () => const ProductRouteArgs());
       return _i9.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i5.ProductScreen(),
+        child: _i5.ProductScreen(
+          key: args.key,
+          model: args.model,
+        ),
       );
     },
     ProfileRoute.name: (routeData) {
@@ -132,16 +139,40 @@ class HomeRoute extends _i9.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.ProductScreen]
-class ProductRoute extends _i9.PageRouteInfo<void> {
-  const ProductRoute({List<_i9.PageRouteInfo>? children})
-      : super(
+class ProductRoute extends _i9.PageRouteInfo<ProductRouteArgs> {
+  ProductRoute({
+    _i10.Key? key,
+    _i11.Product? model,
+    List<_i9.PageRouteInfo>? children,
+  }) : super(
           ProductRoute.name,
+          args: ProductRouteArgs(
+            key: key,
+            model: model,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'ProductRoute';
 
-  static const _i9.PageInfo<void> page = _i9.PageInfo<void>(name);
+  static const _i9.PageInfo<ProductRouteArgs> page =
+      _i9.PageInfo<ProductRouteArgs>(name);
+}
+
+class ProductRouteArgs {
+  const ProductRouteArgs({
+    this.key,
+    this.model,
+  });
+
+  final _i10.Key? key;
+
+  final _i11.Product? model;
+
+  @override
+  String toString() {
+    return 'ProductRouteArgs{key: $key, model: $model}';
+  }
 }
 
 /// generated route for
